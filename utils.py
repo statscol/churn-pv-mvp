@@ -13,6 +13,13 @@ def get_csv_filepaths(folder_names: list):
     return filenames_abs
 
 
+def col_to_dateutc(column,trim=False):
+    if trim:
+        return pd.to_datetime(column,errors="coerce").dt.strftime('%m-%Y')
+    else:
+        return pd.to_datetime(column,errors="coerce")
+
+
 def read_csv(filepath : str):
     try:
         data=pd.read_csv(filepath,sep=",",encoding= 'unicode_escape')
@@ -37,3 +44,10 @@ def read_by_filegroup(filegroup:str,filepaths:list,save_output=False) -> pd.Data
     if save_output:
         data_fg.to_pickle(f'{filegroup}.pickle',compression="gzip")
     return data_fg
+
+def try_convert(num) -> str:
+    try: 
+        val=str(int(num))
+        return val
+    except:
+        return "99999"
