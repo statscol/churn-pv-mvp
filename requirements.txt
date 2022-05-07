@@ -4,4 +4,4 @@ xlrd
 seaborn
 openpyxl
 fuzzywuzzy
-python-Levenshtein
+pandas-profiling[notebook]
