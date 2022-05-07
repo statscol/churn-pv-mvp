@@ -3,3 +3,5 @@ numpy
 xlrd
 seaborn
 openpyxl
+fuzzywuzzy
+python-Levenshtein

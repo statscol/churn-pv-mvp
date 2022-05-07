@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+import numpy as np
+
 
 def remove_non_csv(files: list):
     """retorna archivos en la lista que terminan en csv y que no contienen la palabra 'copia'
