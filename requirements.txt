@@ -5,3 +5,6 @@ seaborn
 openpyxl
 fuzzywuzzy
 pandas-profiling[notebook]
+catboost
+xgboost
+lightgbm

@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import numpy as np
+from sklearn.metrics import confusion_matrix,precision_score,recall_score,cohen_kappa_score,accuracy_score,f1_score,roc_auc_score
 
 
 def remove_non_csv(files: list):
@@ -53,3 +54,14 @@ def try_convert(num) -> str:
         return val
     except:
         return "99999"
+
+def metrics(real,pred):
+
+    kappa=cohen_kappa_score(real,pred)
+    acc=accuracy_score(real,pred)
+    f1=f1_score(real,pred)
+    prec=precision_score(real,pred)
+    recall=recall_score(real,pred)
+
+    print (f" Accuracy:{acc:.4f} \n Precision: {prec:.4f} \n Recall: {recall:.4f} \n Kappa: {kappa:.4f} \n F1-Score: {f1:.4f} ")
+    return {'kappa':kappa,'accuracy':acc,'f1':f1,'prec':prec,'recall':recall}
