@@ -2,6 +2,8 @@ import pandas as pd
 import os
 import numpy as np
 from sklearn.metrics import confusion_matrix,precision_score,recall_score,cohen_kappa_score,accuracy_score,f1_score,roc_auc_score
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def remove_non_csv(files: list):
@@ -65,3 +67,24 @@ def metrics(real,pred):
 
     print (f" Accuracy:{acc:.4f} \n Precision: {prec:.4f} \n Recall: {recall:.4f} \n Kappa: {kappa:.4f} \n F1-Score: {f1:.4f} ")
     return {'kappa':kappa,'accuracy':acc,'f1':f1,'prec':prec,'recall':recall}
+
+def get_confusion_plot(real,pred,title,class_names):
+ 
+   cm = confusion_matrix(real,pred)
+ 
+  
+   fig = plt.figure(figsize=(10, 8))
+   ax= plt.subplot()
+   sns.heatmap(cm, annot=True, ax = ax, fmt = 'g',cmap="Blues"); #annot=True to annotate cells
+   # labels, title and ticks
+   ax.set_xlabel('Predicted', fontsize=20)
+   ax.xaxis.set_label_position('bottom')
+   plt.xticks(rotation=90)
+   ax.xaxis.set_ticklabels(class_names, fontsize = 10)
+   ax.xaxis.tick_bottom()
+ 
+   ax.set_ylabel('True', fontsize=20)
+   ax.yaxis.set_ticklabels(class_names, fontsize = 10)
+   plt.yticks(rotation=0)
+   plt.title(label=title, fontsize=20)
+   plt.show()
