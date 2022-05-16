@@ -25,9 +25,9 @@ MODEL_PARAMS={'xgboost':
                     "model__learning_rate":[0.01],
                     "model__min_samples_split":[2,5],
                     "model__subsample": [0.9,1]
-
                             }
                 },
+
             "logistic_regression":
                 {"param_grid":{
                     "pca__n_components":[10,20],
@@ -35,7 +35,7 @@ MODEL_PARAMS={'xgboost':
                     "model__l1_ratio":[0.1,0.3,0.5,0.8,1]    
                 }},
             "lightgbm":{"param_grid":{
-                'pca__n_components':[5,10,20],
+                'pca__n_components':[10,20],
                 'model__n_estimators': [100,150,500],
                 'model__colsample_bytree': [0.8,0.9],
                 'model__max_depth': [10,15],
