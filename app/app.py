@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 
 
-with open("../models/xgbmodel.pickle", 'rb') as f:
+with open("models/xgbmodel_nopca.pickle", 'rb') as f:
     xgb = pickle.load(f)
 
 app = FastAPI(name="Detección de Churn",title="Herramienta Analítica de Churn", description="API para detección de churn", version="0.1")

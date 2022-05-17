@@ -1,7 +1,6 @@
 backlog = 2048
-
 bind = "0.0.0.0:5005"
-workers = 1  # multiprocessing.cpu_count() * 2 + 1
+workers = 1
 timeout = 240
 threads = 2
 worker_class = "uvicorn.workers.UvicornWorker"
