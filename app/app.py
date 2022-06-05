@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 
 
-with open("models/xgbmodel_nopca.pickle", 'rb') as f:
+with open("../models/xgbmodel.pickle", 'rb') as f:
     xgb = pickle.load(f)
 
 app = FastAPI(name="Detección de Churn",title="Herramienta Analítica de Churn", description="API para detección de churn", version="0.1")
@@ -21,7 +21,7 @@ async def initialize():
 
 @app.post("/api/v1/churn", tags=["churn detector"], response_model=ChurnResponse)
 async def predict_churn(client: Client) -> ChurnResponse:
-        cli_df=pd.DataFrame([client.dict()])
+        cli_df=pd.DataFrame([client.dict()]).rename(columns=COLS_TO_RENAME)
         probability_churn=xgb.predict_proba(cli_df)[:,1][0]
         result=ChurnResponse(Asegurado__c=client.Asegurado__c,CodigoTipoAsegurado__c=client.CodigoTipoAsegurado__c,churn_probability=probability_churn)
         return result
