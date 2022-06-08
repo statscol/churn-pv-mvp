@@ -26,16 +26,17 @@ def col_to_dateutc(column,trim=False):
 
 
 def read_csv(filepath : str):
+
+    data=None
     try:
         data=pd.read_csv(filepath,sep=",",encoding= 'unicode_escape')
         if data.shape[1]<5:
             data=pd.read_csv(filepath,sep=";",encoding= 'unicode_escape',low_memory=False)
-            return data
-        else:
-            return data
     except:
         print("Attempting ; separator")
-        return pd.read_csv(filepath,sep=";",encoding= 'unicode_escape')
+        data=pd.read_csv(filepath,sep=";",encoding= 'unicode_escape')
+    finally:
+        return data
 
 def contains_filegroup(filegroup:str,list_files:list) -> list:
     return [file for file in list_files if filegroup in file.lower().strip()]
@@ -50,9 +51,9 @@ def read_by_filegroup(filegroup:str,filepaths:list,save_output=False) -> pd.Data
         data_fg.to_pickle(f'{filegroup}.pickle',compression="gzip")
     return data_fg
 
-def try_convert(num) -> str:
+def try_convert(num:str) -> str:
     try: 
-        val=str(int(num))
+        val=str(int(float(num.strip())))
         return val
     except:
         return "99999"
@@ -64,9 +65,10 @@ def metrics(real,pred):
     f1=f1_score(real,pred)
     prec=precision_score(real,pred)
     recall=recall_score(real,pred)
+    specificity=recall_score(real, pred, pos_label=0)
 
-    print (f" Accuracy:{acc:.4f} \n Precision: {prec:.4f} \n Recall: {recall:.4f} \n Kappa: {kappa:.4f} \n F1-Score: {f1:.4f} ")
-    return {'kappa':kappa,'accuracy':acc,'f1':f1,'prec':prec,'recall':recall}
+    print (f" Accuracy:{acc:.4f} \n Precision: {prec:.4f} \n Recall: {recall:.4f} \n Specificity: {specificity:.4f} \n Kappa: {kappa:.4f} \n F1-Score: {f1:.4f} ")
+    return {'kappa':kappa,'accuracy':acc,'f1':f1,'prec':prec,'recall':recall,'specificity':specificity}
 
 def get_confusion_plot(real,pred,title,class_names):
  

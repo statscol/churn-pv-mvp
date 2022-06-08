@@ -41,9 +41,9 @@ MODEL_PARAMS={'xgboost':
                 'model__max_depth': [10,15],
                 'model__num_leaves': [10,50],
                 'model__reg_alpha': [0.,1.1,1.2],
-                'model__reg_lambda': [0.,1.1,1.2],
+                'model__reg_lambda': [0.,1.1,1.2]
 #                'model__min_split_gain': [0.3],
-                'model__subsample': [0.9,1],
+#                'model__subsample': [0.9,1],
 #                'model__subsample_freq': [20]
 }}}
 
