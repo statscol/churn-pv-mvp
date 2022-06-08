@@ -21,10 +21,10 @@ MODEL_PARAMS={'xgboost':
                 {'param_grid':{
                     "pca__n_components":[10,20],
                     "model__n_estimators":[50,100,250],
-                    "model__max_depth":[5,10,20],
+                    "model__max_depth":[10,20],
                     "model__learning_rate":[0.01],
                     "model__min_samples_split":[2,5],
-                    "model__subsample": [0.9,1]
+                    "model__subsample": [1]
                             }
                 },
 
@@ -37,11 +37,11 @@ MODEL_PARAMS={'xgboost':
             "lightgbm":{"param_grid":{
                 'pca__n_components':[10,20],
                 'model__n_estimators': [100,150,500],
-                'model__colsample_bytree': [0.8,0.9],
-                'model__max_depth': [10,15],
-                'model__num_leaves': [10,50],
-                'model__reg_alpha': [0.,1.1,1.2],
-                'model__reg_lambda': [0.,1.1,1.2]
+                #'model__colsample_bytree': [0.8,0.9],
+                'model__max_depth': [10,20],
+                'model__num_leaves': [10,25,50],
+                'model__reg_alpha': [0.,0.5,1.1],
+#                'model__reg_lambda': [0.,1.1]
 #                'model__min_split_gain': [0.3],
 #                'model__subsample': [0.9,1],
 #                'model__subsample_freq': [20]
