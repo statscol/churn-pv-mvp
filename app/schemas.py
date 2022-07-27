@@ -35,8 +35,8 @@ class Client(BaseModel):
     
     @validator('TipoRamoName')
     def ramo_validator(cls, v):
-        if v not in ['automoviles', 'responsabilidad civil']:
-            raise ValueError('TipoRamoName no debe ser diferente a los ramos automoviles y responsabilidad civil')
+        if v not in ['automoviles','previhogar', 'responsabilidad civil']:
+            raise ValueError('TipoRamoName no debe ser diferente a los ramos automoviles, previhogar y responsabilidad civil')
         return v
     
     @validator('TipoProdDesc')
